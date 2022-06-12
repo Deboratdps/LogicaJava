@@ -1,0 +1,55 @@
+package desafio;
+
+import java.util.Scanner;
+
+public class DesafioLogica {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			double precoUni=0, precoImposto=0, precoLucro=0, precoTotal=0, imposto=0, margemLucro=0;
+			int contador, quantidade;
+			char categoria;
+			
+			for(contador=0; contador<=2; contador++) {
+				System.out.printf("\nDigite o preço unitário: ");
+				precoUni = sc.nextDouble();
+				System.out.printf("\nDigite a quantidade: ");
+				quantidade = sc.nextInt();
+				System.out.printf("\nDigite a categoria: C [cama, mesa e banho],\nE [eletrodomésticos] e \nV [vestuário]");
+				categoria = sc.next().charAt(0);
+				categoria = Character.toUpperCase(categoria);
+				
+				switch(categoria) {
+				case 'C':
+					imposto = 37.41;
+					margemLucro = 30;
+					break;
+				case 'E':
+					imposto = 43.14;
+					margemLucro = 35;
+					break;
+				case 'V':
+					imposto = 38.42;
+					margemLucro = 50;
+					break;
+				default:
+					System.out.println("\nOpção Inválida");
+					System.out.printf("\nDigite a categoria: \nC [cama, mesa e banho],\nE [eletrodomésticos] e \nV [vestuário]");
+					categoria = sc.next().charAt(0);
+					categoria = Character.toUpperCase(categoria);
+				}
+				precoImposto = precoUni * (1+imposto/100);
+				precoLucro = precoUni * (1+margemLucro/100);
+				precoTotal = precoTotal + precoImposto + precoLucro;
+				System.out.println("\nImposto: "+precoImposto);
+				System.out.println("\nLucro: "+precoLucro);
+				System.out.println("\nTotal: "+precoTotal);
+			}
+			
+			
+			sc.close();
+		}
+
+	}
+
+}

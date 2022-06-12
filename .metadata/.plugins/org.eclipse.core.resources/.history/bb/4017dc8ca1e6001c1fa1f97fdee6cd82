@@ -1,0 +1,70 @@
+package desafio;
+
+import java.util.Scanner;
+
+public class DesafioLogica {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			double precoUni=0, imposto=0, margemLucro=0;
+			double precoImpostoC=0, precoLucroC=0, precoTotalC=0;
+			double precoImpostoE=0, precoLucroE=0, precoTotalE=0;
+			double precoImpostoV=0, precoLucroV=0, precoTotalV=0;
+			int contador, quantidade;
+			char categoria;
+			
+			for(contador=0; contador<=1; contador++) {
+				System.out.printf("\nDigite o preço unitário: ");
+				precoUni = sc.nextDouble();
+				System.out.printf("\nDigite a quantidade: ");
+				quantidade = sc.nextInt();
+				System.out.printf("\nDigite a categoria: C [cama, mesa e banho],\nE [eletrodomésticos] e \nV [vestuário]");
+				categoria = sc.next().charAt(0);
+				categoria = Character.toUpperCase(categoria);
+				
+				switch(categoria) {
+				case 'C':
+					imposto = 37.41;
+					margemLucro = 30;
+					precoImpostoC = precoImpostoC + (precoUni * (1+(imposto/100)));
+					precoLucroC = precoLucroC + (precoImpostoC * (1+(margemLucro/100)));
+					precoTotalC = precoTotalC + (precoLucroC*quantidade);
+					break;
+				case 'E':
+					imposto = 43.14;
+					margemLucro = 35;
+					precoImpostoE = precoUni * (1+(imposto/100));
+					precoLucroE = precoImpostoE * (1+(margemLucro/100));
+					precoTotalE = precoTotalE + (precoLucroE*quantidade);
+					break;
+				case 'V':
+					imposto = 38.42;
+					margemLucro = 50;
+					precoImpostoV = precoUni * (1+(imposto/100));
+					precoLucroV = precoImpostoV * (1+(margemLucro/100));
+					precoTotalV = precoTotalV + (precoLucroV*quantidade);
+					break;
+				default:
+					System.out.println("\nOpção Inválida");
+					System.out.printf("\nDigite a categoria: \nC [cama, mesa e banho],\nE [eletrodomésticos] e \nV [vestuário]");
+					categoria = sc.next().charAt(0);
+					categoria = Character.toUpperCase(categoria);
+				}
+			}
+			System.out.printf("\nValor total do imposto da categoria C: R$%.2f",precoImpostoC);
+			System.out.printf("\nValor total do lucro da categoria C: R$%.2f",precoLucroC);
+			System.out.printf("\n\\nValor total do imposto da categoria E: R$%.2f",precoImpostoE);
+			System.out.printf("\nValor total do lucro da categoria E: R$%.2f",precoLucroE);
+			System.out.printf("\n\\nValor total do imposto da categoria V: R$%.2f",precoImpostoV);
+			System.out.printf("\nValor total do lucro da categoria V: R$%.2f",precoLucroV);
+			
+			System.out.printf("\n\\nValor total categoria C: R$%.2f",precoTotalC);
+			System.out.printf("\nValor total categoria E: R$%.2f",precoTotalE);
+			System.out.printf("\nValor total categoria V: R$%.2f",precoTotalV);
+			
+			sc.close();
+		}
+
+	}
+
+}
